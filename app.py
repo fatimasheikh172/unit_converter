@@ -116,15 +116,5 @@ if st.button("✨ Convert", help="Click to perform conversion"):
     # Display result with animation
     st.balloons()
     st.success(f"**Result:** {value:.2f} {from_unit} = **{result:.4f} {to_unit}**")
-
-# ===============================================
-# Instructions
-# ===============================================
-#st.divider()
-#st.markdown("""
-#**📖 How to Use:**
-#1. Select conversion type from sidebar
-#2. Choose source and target units
-#3. Enter the value to convert
-#4. Click the Convert button
-#""")
+    st.ballons()
+    st.captions("Made by fatima sheikh")
