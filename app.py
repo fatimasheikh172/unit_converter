@@ -1,7 +1,10 @@
+
 import streamlit as st
 
 def convert_temperature(value, from_unit, to_unit):
-    """Handle temperature conversions between Celsius, Fahrenheit, and Kelvin"""
+    # Handle temperature conversions between Celsius, Fahrenheit, and Kelvin
+    # we need formula:-
+    
     if from_unit == "Celsius":
         if to_unit == "Fahrenheit":
             return (value * 9/5) + 32
@@ -19,14 +22,17 @@ def convert_temperature(value, from_unit, to_unit):
             return (value - 273.15) * 9/5 + 32
     return value
 
-# ===============================================
+
 # Interface Setup
-# ===============================================
+
+# set the title and layout this page
+
 st.set_page_config(page_title="Universal Converter", layout="wide")
 st.markdown("## 🔄 Universal Unit Converter")
 st.divider()
 
-# Sidebar for category selection
+# Sidebar for category selection:-
+
 with st.sidebar:
     st.header("Settings")
     category = st.selectbox(
@@ -45,9 +51,8 @@ unit_icons = {
 }
 st.subheader(f"{unit_icons[category]} {category} Conversion")
 
-# ===============================================
 # Conversion Definitions
-# ===============================================
+
 conversion_data = {
     "Length": {
         "units": ["Meters", "Kilometers", "Miles", "Feet", "Inches"],
@@ -91,20 +96,21 @@ conversion_data = {
     }
 }
 
-# ===============================================
 # Input Widgets
-# ===============================================
+
 col1, col2, col3 = st.columns([1, 1, 2])
-with col1:
+with col1: # selcet numbers before input
     from_unit = st.selectbox("From", conversion_data[category]["units"])
 with col2:
     to_unit = st.selectbox("To", conversion_data[category]["units"])
-with col3:
+with col3: # show input
     value = st.number_input("Enter Value", min_value=0.0, format="%.4f")
 
-# ===============================================
+
 # Conversion Logic
-# ===============================================
+
+# convert from base unit
+
 if st.button("✨ Convert", help="Click to perform conversion"):
     if category == "Temperature":
         result = convert_temperature(value, from_unit, to_unit)
@@ -116,5 +122,4 @@ if st.button("✨ Convert", help="Click to perform conversion"):
     # Display result with animation
     st.balloons()
     st.success(f"**Result:** {value:.2f} {from_unit} = **{result:.4f} {to_unit}**")
-    st.ballons()
     st.captions("Made by fatima sheikh")
